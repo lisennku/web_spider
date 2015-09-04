@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*- 
+# update: 1.去掉了与书籍相关字符串左右的空格  
 
 '''
 针对豆瓣读书中“新书速递”（URL：http://book.douban.com/latest?icn=index-latestbook-all）进行简单的爬虫，并生成TXT文件，
@@ -30,18 +31,18 @@ def each_item(each):
 def save_info(book):
     f = open("booklist.txt",'a')
     for i in book:
-        x1 = 'book: ' + ''.join(i['book'].split('\n')[1:-1]) + '\n'
+        x1 = 'book: ' + ''.join(i['book'].split('\n')[1:-1]).strip() + '\n'
         x1 = x1.encode('utf-8')
-        x2 = 'info: ' + ''.join(i['info'].split('\n')[1:-1]) + '\n'
+        x2 = 'info: ' + ''.join(i['info'].split('\n')[1:-1]).strip() + '\n'
         x2 = x2.encode('utf-8')
-        x3 = 'desc: ' + ''.join(i['description'].split('\n')[1:-1]) + '\n'
+        x3 = 'desc: ' + ''.join(i['description'].split('\n')[1:-1]).strip() + '\n'
         x3 = x3.encode('utf-8')
         # print type(x1)
         # print type(x2)
         # print type(x3)
-        f.writelines(x1)
-        f.writelines(x2)
-        f.writelines(x3+'\n')
+        f.writelines(x1+'\n')
+        f.writelines(x2+'\n')
+        f.writelines(x3+'\n\n')
     f.close()
 
 
